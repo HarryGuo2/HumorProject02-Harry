@@ -67,19 +67,73 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                 </h1>
               </div>
 
-              <nav className="ml-8 flex space-x-2">
+              <nav className="ml-8 flex space-x-1">
                 <Link href="/admin" className="nav-link nav-link-active font-semibold">
                   Dashboard
                 </Link>
-                <Link href="/admin/users" className="nav-link">
-                  Users
-                </Link>
-                <Link href="/admin/images" className="nav-link">
-                  Images
-                </Link>
-                <Link href="/admin/captions" className="nav-link">
-                  Captions
-                </Link>
+
+                {/* Content Management */}
+                <div className="relative group">
+                  <button className="nav-link flex items-center gap-1">
+                    Content
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-48 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
+                    <Link href="/admin/users" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-t-lg">👥 Users</Link>
+                    <Link href="/admin/images" className="block px-4 py-2 text-sm hover:bg-primary-50">🖼️ Images</Link>
+                    <Link href="/admin/captions" className="block px-4 py-2 text-sm hover:bg-primary-50">💬 Captions</Link>
+                    <Link href="/admin/caption-requests" className="block px-4 py-2 text-sm hover:bg-primary-50">📝 Caption Requests</Link>
+                    <Link href="/admin/caption-examples" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-b-lg">💡 Caption Examples</Link>
+                  </div>
+                </div>
+
+                {/* Humor System */}
+                <div className="relative group">
+                  <button className="nav-link flex items-center gap-1">
+                    Humor
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-48 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
+                    <Link href="/admin/humor-flavors" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-t-lg">🎭 Humor Flavors</Link>
+                    <Link href="/admin/humor-steps" className="block px-4 py-2 text-sm hover:bg-primary-50">⚡ Flavor Steps</Link>
+                    <Link href="/admin/humor-mix" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-b-lg">🔀 Humor Mix</Link>
+                  </div>
+                </div>
+
+                {/* AI/LLM Management */}
+                <div className="relative group">
+                  <button className="nav-link flex items-center gap-1">
+                    AI/LLM
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-48 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
+                    <Link href="/admin/llm-providers" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-t-lg">🏢 LLM Providers</Link>
+                    <Link href="/admin/llm-models" className="block px-4 py-2 text-sm hover:bg-primary-50">🤖 LLM Models</Link>
+                    <Link href="/admin/llm-chains" className="block px-4 py-2 text-sm hover:bg-primary-50">🔗 Prompt Chains</Link>
+                    <Link href="/admin/llm-responses" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-b-lg">💬 LLM Responses</Link>
+                  </div>
+                </div>
+
+                {/* Settings */}
+                <div className="relative group">
+                  <button className="nav-link flex items-center gap-1">
+                    Settings
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-48 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
+                    <Link href="/admin/terms" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-t-lg">📚 Terms</Link>
+                    <Link href="/admin/signup-domains" className="block px-4 py-2 text-sm hover:bg-primary-50">🌐 Signup Domains</Link>
+                    <Link href="/admin/whitelist-emails" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-b-lg">✉️ Whitelist Emails</Link>
+                  </div>
+                </div>
               </nav>
             </div>
 
