@@ -22,8 +22,8 @@ export default function Home() {
     // Use explicit URLs to avoid Site URL dependency
     const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost'
     const redirectUrl = isLocalhost
-      ? 'http://localhost:3000/auth/callback?next=/admin'
-      : 'https://humor-project02-harry.vercel.app/auth/callback?next=/admin'
+      ? 'http://localhost:3000/auth/callback'
+      : 'https://humor-project02-harry.vercel.app/auth/callback'
 
     console.log('Redirecting to:', redirectUrl) // Debug log
 
