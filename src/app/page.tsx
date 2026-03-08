@@ -18,10 +18,19 @@ export default function Home() {
 
   const handleGoogleLogin = async () => {
     setIsLoading(true)
+
+    // Use explicit URLs to avoid Site URL dependency
+    const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    const redirectUrl = isLocalhost
+      ? 'http://localhost:3000/auth/callback?next=/admin'
+      : 'https://humor-project02-harry.vercel.app/auth/callback?next=/admin'
+
+    console.log('Redirecting to:', redirectUrl) // Debug log
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback?next=/admin`
+        redirectTo: redirectUrl
       }
     })
     if (error) {
