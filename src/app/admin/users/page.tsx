@@ -27,10 +27,11 @@ export default async function UsersPage() {
     .from('profiles')
     .select(`
       *,
+      images:images(count),
       captions:captions(count),
       votes:caption_votes(count)
     `)
-    .order('created_at', { ascending: false })
+    .order('created_datetime_utc', { ascending: false })
 
   if (error) {
     console.error('Error fetching profiles:', error)

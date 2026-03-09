@@ -30,7 +30,7 @@ export default async function ImagesPage() {
       captions:captions(count),
       profiles(email)
     `)
-    .order('created_at', { ascending: false })
+    .order('created_datetime_utc', { ascending: false })
 
   if (error) {
     console.error('Error fetching images:', error)
