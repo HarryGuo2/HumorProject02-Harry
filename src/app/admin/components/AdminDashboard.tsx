@@ -74,12 +74,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
 
                 {/* Content Management */}
                 <div className="relative group">
-                  <button className="nav-link flex items-center gap-1">
+                  <Link href="/admin/users" className="nav-link flex items-center gap-1">
                     Content
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </button>
+                  </Link>
                   <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-48 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
                     <Link href="/admin/users" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-t-lg">👥 Users</Link>
                     <Link href="/admin/images" className="block px-4 py-2 text-sm hover:bg-primary-50">🖼️ Images</Link>
@@ -91,12 +91,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
 
                 {/* Humor System */}
                 <div className="relative group">
-                  <button className="nav-link flex items-center gap-1">
+                  <Link href="/admin/humor-flavors" className="nav-link flex items-center gap-1">
                     Humor
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </button>
+                  </Link>
                   <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-48 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
                     <Link href="/admin/humor-flavors" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-t-lg">🎭 Humor Flavors</Link>
                     <Link href="/admin/humor-steps" className="block px-4 py-2 text-sm hover:bg-primary-50">⚡ Flavor Steps</Link>
@@ -106,12 +106,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
 
                 {/* AI/LLM Management */}
                 <div className="relative group">
-                  <button className="nav-link flex items-center gap-1">
+                  <Link href="/admin/llm-providers" className="nav-link flex items-center gap-1">
                     AI/LLM
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </button>
+                  </Link>
                   <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-48 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
                     <Link href="/admin/llm-providers" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-t-lg">🏢 LLM Providers</Link>
                     <Link href="/admin/llm-models" className="block px-4 py-2 text-sm hover:bg-primary-50">🤖 LLM Models</Link>
@@ -122,12 +122,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
 
                 {/* Settings */}
                 <div className="relative group">
-                  <button className="nav-link flex items-center gap-1">
+                  <Link href="/admin/terms" className="nav-link flex items-center gap-1">
                     Settings
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </button>
+                  </Link>
                   <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-48 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
                     <Link href="/admin/terms" className="block px-4 py-2 text-sm hover:bg-primary-50 rounded-t-lg">📚 Terms</Link>
                     <Link href="/admin/signup-domains" className="block px-4 py-2 text-sm hover:bg-primary-50">🌐 Signup Domains</Link>
