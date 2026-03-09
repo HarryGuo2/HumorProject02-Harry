@@ -72,17 +72,17 @@ export default function ImagesManagement({ images, currentUser }: Props) {
     const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
     const filePath = `uploads/${fileName}`
 
+    setUploadProgress(50) // Show progress during upload
+
     const { error: uploadError } = await supabase.storage
       .from('images')
-      .upload(filePath, file, {
-        onUploadProgress: (progress) => {
-          setUploadProgress((progress.loaded / progress.total) * 100)
-        }
-      })
+      .upload(filePath, file)
 
     if (uploadError) {
       throw new Error(`Upload failed: ${uploadError.message}`)
     }
+
+    setUploadProgress(100) // Complete progress
 
     const { data: urlData } = supabase.storage
       .from('images')
