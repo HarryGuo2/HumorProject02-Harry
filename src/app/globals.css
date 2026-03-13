@@ -249,6 +249,9 @@ body {
 
 /* Enhanced Navigation */
 .nav-link {
+  background: transparent;
+  border: none;
+  appearance: none;
   color: rgb(var(--secondary));
   font-weight: 500;
   padding: 0.75rem 1.25rem;

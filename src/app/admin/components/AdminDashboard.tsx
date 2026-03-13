@@ -88,12 +88,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
 
                 {/* Content Management */}
                 <div className="relative group animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                  <Link href="/admin/users" className="nav-link flex items-center gap-2 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300">
+                  <button type="button" className="nav-link flex items-center gap-2 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300" aria-haspopup="menu" aria-label="Open Content menu">
                     📋 Content
                     <svg className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </Link>
+                  </button>
                   <div className="absolute top-full left-0 pt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                     <div className="p-2">
                       <Link href="/admin/users" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
@@ -122,12 +122,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
 
                 {/* Humor System */}
                 <div className="relative group animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-                  <Link href="/admin/humor-flavors" className="nav-link flex items-center gap-2 hover:bg-purple-50 hover:text-purple-600 transition-all duration-300">
+                  <button type="button" className="nav-link flex items-center gap-2 hover:bg-purple-50 hover:text-purple-600 transition-all duration-300" aria-haspopup="menu" aria-label="Open Humor menu">
                     🎭 Humor
                     <svg className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </Link>
+                  </button>
                   <div className="absolute top-full left-0 pt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                     <div className="p-2">
                       <Link href="/admin/humor-flavors" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all duration-200">
@@ -148,12 +148,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
 
                 {/* AI/LLM Management */}
                 <div className="relative group animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-                  <Link href="/admin/llm-providers" className="nav-link flex items-center gap-2 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-300">
+                  <button type="button" className="nav-link flex items-center gap-2 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-300" aria-haspopup="menu" aria-label="Open AI and LLM menu">
                     🤖 AI/LLM
                     <svg className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </Link>
+                  </button>
                   <div className="absolute top-full left-0 pt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                     <div className="p-2">
                       <Link href="/admin/llm-providers" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-all duration-200">
@@ -178,12 +178,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
 
                 {/* Settings */}
                 <div className="relative group animate-fade-in-up" style={{animationDelay: '0.5s'}}>
-                  <Link href="/admin/terms" className="nav-link flex items-center gap-2 hover:bg-slate-50 hover:text-slate-600 transition-all duration-300">
+                  <button type="button" className="nav-link flex items-center gap-2 hover:bg-slate-50 hover:text-slate-600 transition-all duration-300" aria-haspopup="menu" aria-label="Open Settings menu">
                     ⚙️ Settings
                     <svg className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </Link>
+                  </button>
                   <div className="absolute top-full left-0 pt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                     <div className="p-2">
                       <Link href="/admin/terms" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-slate-50 hover:text-slate-600 rounded-lg transition-all duration-200">
