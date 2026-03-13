@@ -65,23 +65,23 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
       <div className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-br from-purple-200/10 to-blue-300/10 rounded-full blur-2xl animate-float" style={{animationDelay: '5s'}}></div>
 
       {/* Navigation Header */}
-      <nav className="relative z-20 glass-card border-0 rounded-none backdrop-blur-xl border-b shadow-soft animate-fade-in-down">
+      <nav className="relative z-20 glass-card border-0 rounded-none backdrop-blur-xl border-b shadow-soft animate-fade-in-down overflow-visible">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
-            <div className="flex items-center">
+            <div className="flex items-center gap-4 lg:gap-6 min-w-0">
               <div className="flex items-center gap-4 animate-fade-in-right">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-600 rounded-2xl flex items-center justify-center shadow-glow-primary transform hover:rotate-12 transition-all duration-500 hover:scale-110">
                   <span className="text-2xl animate-float">🎭</span>
                 </div>
-                <div>
-                  <h1 className="text-3xl font-bold text-gradient">
+                <div className="shrink-0">
+                  <h1 className="text-2xl lg:text-3xl font-bold text-gradient leading-tight">
                     Admin Portal
                   </h1>
-                  <p className="text-sm text-slate-500 font-medium">Management Dashboard</p>
+                  <p className="text-sm text-slate-500 font-medium hidden lg:block">Management Dashboard</p>
                 </div>
               </div>
 
-              <nav className="ml-12 flex space-x-2">
+              <nav className="ml-1 lg:ml-4 xl:ml-8 flex space-x-1 lg:space-x-2">
                 <Link href="/admin" className="nav-link nav-link-active font-semibold animate-fade-in-up" style={{animationDelay: '0.1s'}}>
                   🏠 Dashboard
                 </Link>
@@ -94,7 +94,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </Link>
-                  <div className="absolute top-full left-0 mt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-56 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                  <div className="absolute top-full left-0 pt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                     <div className="p-2">
                       <Link href="/admin/users" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
                         <span className="text-lg">👥</span>
@@ -128,7 +128,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </Link>
-                  <div className="absolute top-full left-0 mt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                  <div className="absolute top-full left-0 pt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                     <div className="p-2">
                       <Link href="/admin/humor-flavors" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all duration-200">
                         <span className="text-lg">🎭</span>
@@ -154,7 +154,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </Link>
-                  <div className="absolute top-full left-0 mt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                  <div className="absolute top-full left-0 pt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                     <div className="p-2">
                       <Link href="/admin/llm-providers" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-all duration-200">
                         <span className="text-lg">🏢</span>
@@ -184,7 +184,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </Link>
-                  <div className="absolute top-full left-0 mt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                  <div className="absolute top-full left-0 pt-2 glass-card rounded-xl shadow-xl border border-white/20 min-w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                     <div className="p-2">
                       <Link href="/admin/terms" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-slate-50 hover:text-slate-600 rounded-lg transition-all duration-200">
                         <span className="text-lg">📚</span>
