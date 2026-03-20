@@ -1,41 +1,35 @@
-# EDU-112: Fundamentals of AI Security — Mind Map
+# EDU-112: Fundamentals of AI Security — Course Structure
 
-This directory contains the mind map for **Course 112 (Fundamentals of AI Security)**, outlining the four pillars of Zscaler's AI Security framework, their functions, potential labs, Zscaler product mappings, and course breadth/depth planning.
+## Overview
 
-## Four Pillars
+![Course Overview](00_overview.png)
 
-| Pillar | Focus | Key Theme |
-|--------|-------|-----------|
-| **Pillar 1: AI Asset Management** | Visibility | Know your full AI footprint and risks |
-| **Pillar 2: Secure Access to AI Apps** | Data Protection & Access Control | Ensure the safe and responsible use of AI |
-| **Pillar 3: Secure AI Apps & Infrastructure** | Runtime Defense | Full AI Lifecycle: From Dev through deployment and runtime |
-| **Pillar 4: AI Governance & Compliance** | Continuous Assurance | Continuous Monitoring and Posture Management of AI Systems |
+## Pillar 1: AI Asset Management (Visibility)
+
+![Pillar 1](01_pillar1.png)
+
+## Pillar 2: Secure Access to AI Apps (Data Protection & Access Control)
+
+![Pillar 2](02_pillar2.png)
+
+## Pillar 3: Secure AI Apps & Infrastructure (Runtime Defense)
+
+![Pillar 3](03_pillar3.png)
+
+## Pillar 4: AI Governance & Compliance (Continuous Assurance)
+
+![Pillar 4](04_pillar4.png)
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `course112_mindmap.mmd` | Mermaid source file (editable) |
-| `course112_mindmap.png` | Rendered mind map image |
-
-## Recommended Sequence
-
-1. **Pillar 1** — Visibility First (discover AI assets)
-2. **Pillar 2** — Enable Safe Use (access control & DLP)
-3. **Pillar 3** — Harden Infrastructure (runtime defense & threat protection)
-4. **Pillar 4** — Continuous Governance (compliance & posture management)
-
-## Prerequisites
-
-- EDU-111: Fundamentals of AI
-
-## Target Completion
-
-End of April 2026
+| `00_overview.mmd` | Course overview flowchart (Mermaid source) |
+| `01_pillar1.mmd` | Pillar 1 detail chart (Mermaid source) |
+| `02_pillar2.mmd` | Pillar 2 detail chart (Mermaid source) |
+| `03_pillar3.mmd` | Pillar 3 detail chart (Mermaid source) |
+| `04_pillar4.mmd` | Pillar 4 detail chart (Mermaid source) |
 
 ## How to Edit
 
-The `.mmd` file uses [Mermaid mindmap syntax](https://mermaid.js.org/syntax/mindmap.html). You can edit it in any text editor and render it using:
-- [Mermaid Live Editor](https://mermaid.live/)
-- VS Code with the Mermaid extension
-- Any Mermaid-compatible renderer
+All `.mmd` files use [Mermaid flowchart syntax](https://mermaid.js.org/syntax/flowchart.html). Edit in any text editor and render using the [Mermaid Live Editor](https://mermaid.live/) or VS Code with the Mermaid extension.

@@ -1,0 +1,34 @@
+flowchart TB
+    classDef header fill:#6A1B9A,color:#fff,font-weight:bold,stroke:none
+    classDef func fill:#F3E5F5,color:#4A148C,stroke:#6A1B9A,stroke-width:2px
+    classDef detail fill:#fff,color:#333,stroke:#CE93D8,stroke-width:1px
+    classDef lab fill:#FFF8E1,color:#F57F17,stroke:#FFB300,stroke-width:2px,font-weight:bold
+    classDef product fill:#F3E5F5,color:#6A1B9A,stroke:#AB47BC,stroke-width:2px,font-weight:bold
+
+    H["PILLAR 4: AI Governance & Compliance — Continuous Assurance<br/>Continuous Monitoring and Posture Management of AI Systems"]:::header
+
+    H --> F1["Assurance Cycle"]:::func
+    H --> F2["Compliance Frameworks"]:::func
+    H --> F3["Posture Management"]:::func
+    H --> F4["AI-Assisted Troubleshooting"]:::func
+
+    F1 --> F1a["1. Discover: Find & Classify AI, Services & Data"]:::detail
+    F1 --> F1b["2. Measure: Continuously Map Risky Exposure"]:::detail
+    F1 --> F1c["3. Manage: Enforce Guardrails & Protect Data"]:::detail
+    F1 --> F1d["4. Govern: Monitor & Optimize per Framework"]:::detail
+
+    F2 --> F2a["NIST AI RMF"]:::detail
+    F2 --> F2b["EU AI Act"]:::detail
+    F2 --> F2c["OWASP Top 10 for LLM"]:::detail
+    F2 --> F2d["ISO 42001"]:::detail
+
+    F3 --> F3a["AI-Powered DSPM: Data Security Posture"]:::detail
+    F3 --> F3b["AI-Powered SSPM: SaaS Security Posture"]:::detail
+    F3 --> F3c["Misconfiguration & Compliance Checks"]:::detail
+
+    F4 --> F4a["ZDX Copilot: Diagnose, Summarize, Recommend"]:::detail
+    F4 --> F4b["Root Cause Analysis: System & App Issues"]:::detail
+
+    H --> LAB["POTENTIAL LABS<br/>• Review DSPM Compliance Dashboard<br/>• Use ZDX Copilot for Troubleshooting<br/>• Map AI Posture to NIST AI RMF"]:::lab
+
+    H --> PROD["ZSCALER PRODUCTS<br/>DSPM / AI-SPM · ZDX Copilot · Risk360"]:::product

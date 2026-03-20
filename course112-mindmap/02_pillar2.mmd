@@ -1,0 +1,32 @@
+flowchart TB
+    classDef header fill:#2E7D32,color:#fff,font-weight:bold,stroke:none
+    classDef func fill:#E8F5E9,color:#1B5E20,stroke:#2E7D32,stroke-width:2px
+    classDef detail fill:#fff,color:#333,stroke:#A5D6A7,stroke-width:1px
+    classDef lab fill:#FFF8E1,color:#F57F17,stroke:#FFB300,stroke-width:2px,font-weight:bold
+    classDef product fill:#F3E5F5,color:#6A1B9A,stroke:#AB47BC,stroke-width:2px,font-weight:bold
+
+    H["PILLAR 2: Secure Access to AI Apps — Data Protection & Access Control<br/>Ensure the safe and responsible use of AI"]:::header
+
+    H --> F1["Access Control"]:::func
+    H --> F2["GenAI-Aware DLP"]:::func
+    H --> F3["Content Moderation"]:::func
+    H --> F4["Prompt Visibility"]:::func
+
+    F1 --> F1a["Block / Allow / Isolate per User, Group, Department"]:::detail
+    F1 --> F1b["Browser Isolation via ZT Browser"]:::detail
+    F1 --> F1c["User Coaching & Warnings"]:::detail
+
+    F2 --> F2a["Real-time Prompt & Response Inspection"]:::detail
+    F2 --> F2b["Credentials & Secrets / PII / Financial Data"]:::detail
+    F2 --> F2c["Healthcare Data / Source Code Protection"]:::detail
+
+    F3 --> F3a["Off Topic / Toxicity Detection"]:::detail
+    F3 --> F3b["Competition / Brand & Reputation"]:::detail
+    F3 --> F3c["Gibberish Detection"]:::detail
+
+    F4 --> F4a["Prompt Classification & Audit Trail"]:::detail
+    F4 --> F4b["Usage Analytics by Department"]:::detail
+
+    H --> LAB["POTENTIAL LABS<br/>• Configure GenAI Access Policies<br/>• Set Up DLP for AI Prompts<br/>• Review Prompt Classification Logs<br/>• Create Content Moderation Rules"]:::lab
+
+    H --> PROD["ZSCALER PRODUCTS<br/>GenAI Security · Zero Trust Exchange · AI Guard"]:::product

@@ -1,0 +1,32 @@
+flowchart TB
+    classDef header fill:#E65100,color:#fff,font-weight:bold,stroke:none
+    classDef func fill:#FFF3E0,color:#BF360C,stroke:#E65100,stroke-width:2px
+    classDef detail fill:#fff,color:#333,stroke:#FFCC80,stroke-width:1px
+    classDef lab fill:#FFF8E1,color:#F57F17,stroke:#FFB300,stroke-width:2px,font-weight:bold
+    classDef product fill:#F3E5F5,color:#6A1B9A,stroke:#AB47BC,stroke-width:2px,font-weight:bold
+
+    H["PILLAR 3: Secure AI Apps & Infrastructure — Runtime Defense<br/>Full AI Lifecycle: From Dev through Deployment and Runtime"]:::header
+
+    H --> F1["AI Guard Runtime Protection"]:::func
+    H --> F2["Threat Protection"]:::func
+    H --> F3["AI-Powered Detection"]:::func
+    H --> F4["Red Teaming"]:::func
+
+    F1 --> F1a["Prompt/Response Inspection & Policy Enforcement"]:::detail
+    F1 --> F1b["Access Control: Block, Warn/Coach, Isolate, Rate Limit, Encrypt"]:::detail
+
+    F2 --> F2a["Prompt Injection & Jailbreak Prevention"]:::detail
+    F2 --> F2b["Malicious URL & Unreachable URL Blocking"]:::detail
+    F2 --> F2c["Invisible Text Detection"]:::detail
+
+    F3 --> F3a["AI Instant Verdict: Sandbox for Benign & Unknown Files"]:::detail
+    F3 --> F3b["AI Antimalware Engine: ML-Based Detection"]:::detail
+    F3 --> F3c["Unknown C2 Detection: Traffic Metadata & Timing Analysis"]:::detail
+
+    F4 --> F4a["Continuous Adversarial Testing: 25 Probes + Custom"]:::detail
+    F4 --> F4b["5000+ Attack Simulations, 46 Red Teamer Personas"]:::detail
+    F4 --> F4c["Categories: Security, Safety, Hallucination, Business Alignment"]:::detail
+
+    H --> LAB["POTENTIAL LABS<br/>• Configure AI Guard Policies<br/>• Run Red Teaming Simulation<br/>• Review Threat Verdicts<br/>• Analyze C2 Detection Alerts"]:::lab
+
+    H --> PROD["ZSCALER PRODUCTS<br/>AI Guard · Advanced Cloud Sandbox · ATP"]:::product

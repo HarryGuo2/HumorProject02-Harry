@@ -1,0 +1,30 @@
+flowchart TB
+    classDef header fill:#1565C0,color:#fff,font-weight:bold,stroke:none
+    classDef func fill:#E3F2FD,color:#0D47A1,stroke:#1565C0,stroke-width:2px
+    classDef detail fill:#fff,color:#333,stroke:#90CAF9,stroke-width:1px
+    classDef lab fill:#FFF8E1,color:#F57F17,stroke:#FFB300,stroke-width:2px,font-weight:bold
+    classDef product fill:#F3E5F5,color:#6A1B9A,stroke:#AB47BC,stroke-width:2px,font-weight:bold
+
+    H["PILLAR 1: AI Asset Management — Visibility<br/>Know your full AI footprint and risks"]:::header
+
+    H --> F1["Auto-Discovery of AI Apps"]:::func
+    H --> F2["AI Ecosystem Mapping"]:::func
+    H --> F3["Risk Scoring"]:::func
+
+    F1 --> F1a["GenAI SaaS: ChatGPT, Gemini, Copilot, DeepSeek"]:::detail
+    F1 --> F1b["Embedded AI: Salesforce, Workday, ServiceNow, Slack"]:::detail
+    F1 --> F1c["Endpoint: AI Plugins, AI Browsers, AI IDEs"]:::detail
+    F1 --> F1d["AI Agents: Devin, Lindy, Claude, CrewAI, LangChain"]:::detail
+    F1 --> F1e["Cloud AI: Amazon Bedrock, Vertex AI, Azure AI Foundry"]:::detail
+
+    F2 --> F2a["Models & LLM Inventory"]:::detail
+    F2 --> F2b["MCP Services & Agent Registry"]:::detail
+    F2 --> F2c["Data Pipelines & Datasets"]:::detail
+
+    F3 --> F3a["Risk360: Aggregate & Correlate Org-wide AI Risks"]:::detail
+    F3 --> F3b["Model Risk Ratings"]:::detail
+    F3 --> F3c["Supply Chain Risk: Risky AI Packages"]:::detail
+
+    H --> LAB["POTENTIAL LABS<br/>• Discover Shadow AI Apps<br/>• Review AI App Usage Dashboard<br/>• Assess Risk360 AI Risk Score"]:::lab
+
+    H --> PROD["ZSCALER PRODUCTS<br/>Risk360 · Data Security · OCR by ML & AI · ZDX"]:::product
