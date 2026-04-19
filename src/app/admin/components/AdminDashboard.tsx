@@ -153,6 +153,10 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                         <span className="text-lg">💡</span>
                         <span className="font-medium">Examples</span>
                       </Link>
+                      <Link href="/admin/ratings" className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-rose-50 hover:text-rose-600 rounded-lg transition-all duration-200">
+                        <span className="text-lg">🗳️</span>
+                        <span className="font-medium">Ratings</span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -382,7 +386,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
             <div className="h-1 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full"></div>
           </div>
 
-          <div className="card-modern p-8 animate-fade-in-up group hover:scale-105 transition-all duration-500" style={{ animationDelay: '0.3s' }}>
+          <Link
+            href="/admin/ratings"
+            className="card-modern p-8 animate-fade-in-up group hover:scale-105 transition-all duration-500 block relative"
+            style={{ animationDelay: '0.3s' }}
+          >
+            <span className="absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 opacity-0 group-hover:opacity-100 transition-opacity">View stats →</span>
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Votes</p>
@@ -399,7 +408,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
               </div>
             </div>
             <div className="h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
-          </div>
+          </Link>
         </div>
 
         {/* Charts Section */}
