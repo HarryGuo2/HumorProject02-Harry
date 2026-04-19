@@ -43,7 +43,7 @@ export default async function AdminPage() {
 
   const { data: recentCaptions, error: recentCaptionsError } = await supabase
     .from('captions')
-    .select('*, profiles(email)')
+    .select('*, profiles:profiles!captions_profile_id_fkey (email)')
     .order('created_datetime_utc', { ascending: false })
     .limit(5)
 
@@ -53,7 +53,7 @@ export default async function AdminPage() {
 
   const { data: topCaptions, error: topCaptionsError } = await supabase
     .from('captions')
-    .select('*, profiles(email)')
+    .select('*, profiles:profiles!captions_profile_id_fkey (email)')
     .order('like_count', { ascending: false })
     .limit(5)
 

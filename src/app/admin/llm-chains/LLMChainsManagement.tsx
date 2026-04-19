@@ -77,7 +77,7 @@ export default function LLMChainsManagement({ llmChains, totalChains, captionReq
             profile_id,
             image_id,
             created_datetime_utc,
-            profiles (email)
+            profiles:profiles!caption_requests_profile_id_fkey (email)
           )
         `
         )
@@ -112,7 +112,7 @@ export default function LLMChainsManagement({ llmChains, totalChains, captionReq
             profile_id,
             image_id,
             created_datetime_utc,
-            profiles (email)
+            profiles:profiles!caption_requests_profile_id_fkey (email)
           )
         `
         )

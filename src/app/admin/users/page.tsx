@@ -22,16 +22,16 @@ export default async function UsersPage() {
     redirect('/unauthorized')
   }
 
-  // Fetch all users/profiles with additional data
   const { data: profiles, error } = await supabase
     .from('profiles')
     .select(`
       *,
-      images:images(count),
-      captions:captions(count),
-      votes:caption_votes(count)
+      images:images!images_profile_id_fkey(count),
+      captions:captions!captions_profile_id_fkey(count),
+      votes:caption_votes!caption_votes_profile_id_fkey(count)
     `)
     .order('created_datetime_utc', { ascending: false })
+    .limit(500)
 
   if (error) {
     console.error('Error fetching profiles:', error)

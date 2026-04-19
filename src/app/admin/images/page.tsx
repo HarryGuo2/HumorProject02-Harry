@@ -31,7 +31,7 @@ export default async function ImagesPage() {
     .select(`
       *,
       captions:captions(count),
-      profiles(email)
+      profiles:profiles!images_profile_id_fkey (email)
     `)
     .order('created_datetime_utc', { ascending: false })
     .limit(500)

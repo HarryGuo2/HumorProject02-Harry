@@ -30,7 +30,7 @@ export default async function CaptionsPage() {
     .from('captions')
     .select(`
       *,
-      profiles(email),
+      profiles:profiles!captions_profile_id_fkey (email),
       images(url, image_description),
       humor_flavors(slug, description),
       votes:caption_votes(vote_value)

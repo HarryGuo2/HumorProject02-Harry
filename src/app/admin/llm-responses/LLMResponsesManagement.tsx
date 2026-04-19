@@ -147,7 +147,7 @@ export default function LLMResponsesManagement({
         name,
         provider_model_id
       ),
-      profiles (
+      profiles:profiles!llm_model_responses_profile_id_fkey (
         id,
         email
       ),

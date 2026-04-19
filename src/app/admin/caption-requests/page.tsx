@@ -29,7 +29,7 @@ export default async function CaptionRequestsPage() {
     .from('caption_requests')
     .select(`
       *,
-      profiles (
+      profiles:profiles!caption_requests_profile_id_fkey (
         id,
         email
       ),

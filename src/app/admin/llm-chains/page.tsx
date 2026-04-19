@@ -36,7 +36,7 @@ export default async function LLMChainsPage() {
         image_id,
         profile_id,
         created_datetime_utc,
-        profiles (
+        profiles:profiles!caption_requests_profile_id_fkey (
           email
         )
       )
@@ -55,7 +55,7 @@ export default async function LLMChainsPage() {
       profile_id,
       image_id,
       created_datetime_utc,
-      profiles (
+      profiles:profiles!caption_requests_profile_id_fkey (
         email
       )
     `)

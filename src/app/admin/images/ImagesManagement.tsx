@@ -70,24 +70,33 @@ export default function ImagesManagement({ images, totalCount, currentUser }: Pr
   }
 
   const handleUploadFile = async (file: File): Promise<string> => {
-    const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-    const filePath = `uploads/${fileName}`
+    const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
+    const userScope = currentUser?.id || 'anonymous'
+    const filePath = `${userScope}/${Date.now()}-${safeName}`
 
-    setUploadProgress(50) // Show progress during upload
+    setUploadProgress(50)
 
     const { error: uploadError } = await supabase.storage
       .from('images')
-      .upload(filePath, file)
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: false,
+        contentType: file.type || undefined,
+      })
 
     if (uploadError) {
-      throw new Error(`Upload failed: ${uploadError.message}`)
+      throw new Error(`Storage upload failed: ${uploadError.message}`)
     }
 
-    setUploadProgress(100) // Complete progress
+    setUploadProgress(100)
 
     const { data: urlData } = supabase.storage
       .from('images')
       .getPublicUrl(filePath)
+
+    if (!urlData?.publicUrl) {
+      throw new Error('Uploaded file but could not resolve a public URL')
+    }
 
     return urlData.publicUrl
   }
@@ -98,16 +107,19 @@ export default function ImagesManagement({ images, totalCount, currentUser }: Pr
     setUploadProgress(0)
 
     try {
-      let imageUrl = newImage.url
-
-      // Handle file upload
-      if (uploadMethod === 'file' && uploadedFile) {
-        imageUrl = await handleUploadFile(uploadedFile)
+      if (!currentUser?.id) {
+        throw new Error('Not logged in')
       }
 
-      if (!imageUrl) {
-        alert('Please provide either a URL or upload a file')
-        return
+      let imageUrl = newImage.url.trim()
+
+      if (uploadMethod === 'file') {
+        if (!uploadedFile) {
+          throw new Error('Please choose an image file to upload')
+        }
+        imageUrl = await handleUploadFile(uploadedFile)
+      } else if (!imageUrl) {
+        throw new Error('Please provide an image URL')
       }
 
       const { data, error } = await supabase
@@ -117,18 +129,19 @@ export default function ImagesManagement({ images, totalCount, currentUser }: Pr
             url: imageUrl,
             image_description: newImage.description.trim() || null,
             is_public: newImage.isPublic,
-            profile_id: currentUser.id
-          }
+            profile_id: currentUser.id,
+          },
         ])
         .select(`
           *,
-          profiles (email)
+          profiles:profiles!images_profile_id_fkey (email)
         `)
         .single()
 
       if (error) throw error
+      if (!data) throw new Error('Insert returned no row (check RLS policies)')
 
-      setLocalImages(prev => [data, ...prev])
+      setLocalImages(prev => [data as Image, ...prev])
       setNewImage({ url: '', description: '', isPublic: true })
       setUploadedFile(null)
       setUploadProgress(0)
@@ -138,7 +151,9 @@ export default function ImagesManagement({ images, totalCount, currentUser }: Pr
       }
     } catch (error) {
       console.error('Error creating image:', error)
-      alert('Failed to create image: ' + (error as Error).message)
+      const message = (error as { message?: string; details?: string; hint?: string })?.message
+        || 'Unknown error'
+      alert(`Failed to create image: ${message}`)
     } finally {
       setIsLoading(false)
     }
