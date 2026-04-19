@@ -5,7 +5,6 @@ import UsersManagement from './UsersManagement'
 export default async function UsersPage() {
   const supabase = await createClient()
 
-  // Check authentication and superadmin status
   const { data: { user }, error: userError } = await supabase.auth.getUser()
 
   if (userError || !user) {
@@ -22,27 +21,43 @@ export default async function UsersPage() {
     redirect('/unauthorized')
   }
 
-  const { data: profiles, error } = await supabase
-    .from('profiles')
-    .select(`
-      *,
-      images:images!images_profile_id_fkey(count),
-      captions:captions!captions_profile_id_fkey(count),
-      votes:caption_votes!caption_votes_profile_id_fkey(count)
-    `)
-    .order('created_datetime_utc', { ascending: false })
-    .limit(500)
+  const { data: rpcRows, error } = await supabase.rpc('admin_profiles_with_stats', { lim: 500 })
 
   if (error) {
-    console.error('Error fetching profiles:', error)
+    console.error('admin_profiles_with_stats error:', error)
   }
 
-  // Get user metadata from auth.users (this requires service role key in production)
-  // For now we'll work with what we have from profiles
+  const profiles = ((rpcRows as Array<{
+    id: string
+    created_datetime_utc: string
+    modified_datetime_utc: string | null
+    first_name: string | null
+    last_name: string | null
+    email: string | null
+    is_superadmin: boolean
+    is_matrix_admin: boolean
+    is_in_study: boolean
+    image_count: number
+    caption_count: number
+    vote_count: number
+  }> | null) || []).map((p) => ({
+    id: p.id,
+    created_datetime_utc: p.created_datetime_utc,
+    modified_datetime_utc: p.modified_datetime_utc || undefined,
+    first_name: p.first_name || undefined,
+    last_name: p.last_name || undefined,
+    email: p.email || undefined,
+    is_superadmin: p.is_superadmin,
+    is_matrix_admin: p.is_matrix_admin,
+    is_in_study: p.is_in_study,
+    images: [{ count: Number(p.image_count || 0) }],
+    captions: [{ count: Number(p.caption_count || 0) }],
+    votes: [{ count: Number(p.vote_count || 0) }],
+  }))
 
   return (
     <UsersManagement
-      profiles={profiles || []}
+      profiles={profiles}
       currentUser={user}
     />
   )
