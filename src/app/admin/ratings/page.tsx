@@ -183,14 +183,16 @@ export default async function RatingsPage() {
               </div>
             </div>
             <MiniBarChart
-              data={perDay.map((d) => ({ label: d.day, value: Number(d.total) }))}
+              data={perDay.map((d) => {
+                const date = new Date(d.day)
+                return {
+                  label: `${date.getUTCMonth() + 1}/${date.getUTCDate()}`,
+                  value: Number(d.total),
+                }
+              })}
               orientation="vertical"
               height={180}
               barColorClass="from-blue-500 to-indigo-600"
-              labelFormatter={(iso) => {
-                const d = new Date(iso)
-                return `${d.getMonth() + 1}/${d.getDate()}`
-              }}
               emptyMessage="No votes in the last 30 days"
             />
           </div>
