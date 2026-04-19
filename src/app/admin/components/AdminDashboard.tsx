@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { createClient } from '@/lib/supabase-browser'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import MiniBarChart from './MiniBarChart'
 
 interface User {
   id: string
@@ -20,14 +21,50 @@ interface Profile {
   is_superadmin: boolean
 }
 
+interface WeeklyDelta {
+  thisWeek: number
+  lastWeek: number
+}
+
 interface Stats {
   totalUsers: number
   totalImages: number
   totalCaptions: number
   totalVotes: number
+  weekly?: {
+    users: WeeklyDelta
+    images: WeeklyDelta
+    captions: WeeklyDelta
+    votes: WeeklyDelta
+  }
+  charts?: {
+    captionsPerDay: Array<{ day: string; c: number }>
+    usersPerDay: Array<{ day: string; c: number }>
+    topFlavors: Array<{ id: number; slug: string; caption_count: number }>
+    topModels: Array<{ id: number; name: string; provider: string; uses: number }>
+  }
   recentImages: any[]
   recentCaptions: any[]
   topCaptions: any[]
+}
+
+function DeltaBadge({ current, previous }: { current: number; previous: number }) {
+  if (previous === 0 && current === 0) {
+    return <span className="text-xs text-slate-400">no change</span>
+  }
+  const delta = current - previous
+  const pct = previous === 0 ? 100 : Math.round((delta / previous) * 100)
+  const up = delta >= 0
+  return (
+    <span
+      className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${
+        up ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+      }`}
+    >
+      {up ? '▲' : '▼'} {Math.abs(pct)}%
+      <span className="text-[10px] font-normal opacity-70">vs last week</span>
+    </span>
+  )
 }
 
 interface Props {
@@ -293,6 +330,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Users</p>
                 <p className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">{stats.totalUsers.toLocaleString()}</p>
+                {stats.weekly && (
+                  <div className="mt-2 flex flex-col gap-1">
+                    <DeltaBadge current={stats.weekly.users.thisWeek} previous={stats.weekly.users.lastWeek} />
+                    <span className="text-[11px] text-slate-500">+{stats.weekly.users.thisWeek.toLocaleString()} this week</span>
+                  </div>
+                )}
               </div>
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-glow-primary group-hover:shadow-glow-lg group-hover:rotate-12 transition-all duration-500">
                 <span className="text-3xl animate-float">👥</span>
@@ -306,6 +349,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Images</p>
                 <p className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">{stats.totalImages.toLocaleString()}</p>
+                {stats.weekly && (
+                  <div className="mt-2 flex flex-col gap-1">
+                    <DeltaBadge current={stats.weekly.images.thisWeek} previous={stats.weekly.images.lastWeek} />
+                    <span className="text-[11px] text-slate-500">+{stats.weekly.images.thisWeek.toLocaleString()} this week</span>
+                  </div>
+                )}
               </div>
               <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center shadow-glow-success group-hover:shadow-glow-lg group-hover:rotate-12 transition-all duration-500">
                 <span className="text-3xl animate-float">🖼️</span>
@@ -319,6 +368,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Captions</p>
                 <p className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">{stats.totalCaptions.toLocaleString()}</p>
+                {stats.weekly && (
+                  <div className="mt-2 flex flex-col gap-1">
+                    <DeltaBadge current={stats.weekly.captions.thisWeek} previous={stats.weekly.captions.lastWeek} />
+                    <span className="text-[11px] text-slate-500">+{stats.weekly.captions.thisWeek.toLocaleString()} this week</span>
+                  </div>
+                )}
               </div>
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-3xl flex items-center justify-center shadow-glow group-hover:shadow-glow-lg group-hover:rotate-12 transition-all duration-500">
                 <span className="text-3xl animate-float">💬</span>
@@ -332,6 +387,12 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Votes</p>
                 <p className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{stats.totalVotes.toLocaleString()}</p>
+                {stats.weekly && (
+                  <div className="mt-2 flex flex-col gap-1">
+                    <DeltaBadge current={stats.weekly.votes.thisWeek} previous={stats.weekly.votes.lastWeek} />
+                    <span className="text-[11px] text-slate-500">+{stats.weekly.votes.thisWeek.toLocaleString()} this week</span>
+                  </div>
+                )}
               </div>
               <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-3xl flex items-center justify-center shadow-glow-warning group-hover:shadow-glow-lg group-hover:rotate-12 transition-all duration-500">
                 <span className="text-3xl animate-float">🗳️</span>
@@ -340,6 +401,112 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
             <div className="h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
           </div>
         </div>
+
+        {/* Charts Section */}
+        {stats.charts && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+            <div className="card-modern p-8 animate-fade-in-up hover:shadow-xl transition-all duration-500 group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-glow">
+                  <span className="text-xl">📈</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gradient">Captions · Last 14 Days</h3>
+                  <p className="text-slate-500 text-sm">Daily caption generation volume</p>
+                </div>
+                <div className="ml-auto text-right">
+                  <div className="text-xs text-slate-500 uppercase">Total</div>
+                  <div className="text-lg font-bold text-purple-700 tabular-nums">
+                    {stats.charts.captionsPerDay.reduce((a, b) => a + Number(b.c || 0), 0).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+              <MiniBarChart
+                data={stats.charts.captionsPerDay.map((d) => ({ label: d.day, value: Number(d.c) }))}
+                orientation="vertical"
+                height={180}
+                barColorClass="from-purple-500 to-violet-600"
+                labelFormatter={(iso) => {
+                  const d = new Date(iso)
+                  return `${d.getMonth() + 1}/${d.getDate()}`
+                }}
+                emptyMessage="No captions in the last 14 days"
+              />
+            </div>
+
+            <div className="card-modern p-8 animate-fade-in-up hover:shadow-xl transition-all duration-500 group" style={{ animationDelay: '0.1s' }}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-glow-primary">
+                  <span className="text-xl">👥</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gradient">New Users · Last 30 Days</h3>
+                  <p className="text-slate-500 text-sm">Signups per day</p>
+                </div>
+                <div className="ml-auto text-right">
+                  <div className="text-xs text-slate-500 uppercase">Total</div>
+                  <div className="text-lg font-bold text-blue-700 tabular-nums">
+                    {stats.charts.usersPerDay.reduce((a, b) => a + Number(b.c || 0), 0).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+              <MiniBarChart
+                data={stats.charts.usersPerDay.map((d) => ({ label: d.day, value: Number(d.c) }))}
+                orientation="vertical"
+                height={180}
+                barColorClass="from-blue-500 to-indigo-600"
+                labelFormatter={(iso) => {
+                  const d = new Date(iso)
+                  return `${d.getMonth() + 1}/${d.getDate()}`
+                }}
+                emptyMessage="No signups in the last 30 days"
+              />
+            </div>
+
+            <div className="card-modern p-8 animate-fade-in-up hover:shadow-xl transition-all duration-500 group" style={{ animationDelay: '0.2s' }}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center shadow-glow">
+                  <span className="text-xl">🎭</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gradient">Top Humor Flavors</h3>
+                  <p className="text-slate-500 text-sm">Most-used flavors by caption count</p>
+                </div>
+              </div>
+              <MiniBarChart
+                data={stats.charts.topFlavors.map((f) => ({
+                  label: f.slug,
+                  value: Number(f.caption_count),
+                }))}
+                orientation="horizontal"
+                barColorClass="from-pink-500 to-rose-600"
+                emptyMessage="No flavor usage data"
+              />
+            </div>
+
+            <div className="card-modern p-8 animate-fade-in-up hover:shadow-xl transition-all duration-500 group" style={{ animationDelay: '0.3s' }}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-glow-success">
+                  <span className="text-xl">🤖</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gradient">Top LLM Models</h3>
+                  <p className="text-slate-500 text-sm">Most-used models by response count</p>
+                </div>
+              </div>
+              <MiniBarChart
+                data={stats.charts.topModels.map((m) => ({
+                  label: m.name,
+                  subLabel: m.provider,
+                  value: Number(m.uses),
+                }))}
+                orientation="horizontal"
+                barColorClass="from-emerald-500 to-teal-600"
+                emptyMessage="No model usage data"
+              />
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
           {/* Recent Activity */}

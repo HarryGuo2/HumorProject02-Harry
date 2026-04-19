@@ -5,14 +5,12 @@ import AdminDashboard from './components/AdminDashboard'
 export default async function AdminPage() {
   const supabase = await createClient()
 
-  // Get current user
   const { data: { user }, error: userError } = await supabase.auth.getUser()
 
   if (userError || !user) {
     redirect('/')
   }
 
-  // Verify superadmin status
   const { data: profile } = await supabase
     .from('profiles')
     .select('is_superadmin, id')
@@ -23,12 +21,36 @@ export default async function AdminPage() {
     redirect('/unauthorized')
   }
 
-  // Fetch statistics for dashboard
-  const [usersResult, imagesResult, captionsResult, votesResult] = await Promise.all([
-    supabase.from('profiles').select('*', { count: 'exact' }),
-    supabase.from('images').select('*', { count: 'exact' }),
-    supabase.from('captions').select('*', { count: 'exact' }),
-    supabase.from('caption_votes').select('*', { count: 'exact' })
+  const now = new Date()
+  const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString()
+  const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString()
+
+  const [
+    usersResult,
+    imagesResult,
+    captionsResult,
+    votesResult,
+    usersThisWeek,
+    usersLastWeek,
+    imagesThisWeek,
+    imagesLastWeek,
+    captionsThisWeek,
+    captionsLastWeek,
+    votesThisWeek,
+    votesLastWeek,
+  ] = await Promise.all([
+    supabase.from('profiles').select('*', { count: 'exact', head: true }),
+    supabase.from('images').select('*', { count: 'exact', head: true }),
+    supabase.from('captions').select('*', { count: 'exact', head: true }),
+    supabase.from('caption_votes').select('*', { count: 'exact', head: true }),
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).gte('created_datetime_utc', sevenDaysAgo),
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).gte('created_datetime_utc', fourteenDaysAgo).lt('created_datetime_utc', sevenDaysAgo),
+    supabase.from('images').select('*', { count: 'exact', head: true }).gte('created_datetime_utc', sevenDaysAgo),
+    supabase.from('images').select('*', { count: 'exact', head: true }).gte('created_datetime_utc', fourteenDaysAgo).lt('created_datetime_utc', sevenDaysAgo),
+    supabase.from('captions').select('*', { count: 'exact', head: true }).gte('created_datetime_utc', sevenDaysAgo),
+    supabase.from('captions').select('*', { count: 'exact', head: true }).gte('created_datetime_utc', fourteenDaysAgo).lt('created_datetime_utc', sevenDaysAgo),
+    supabase.from('caption_votes').select('*', { count: 'exact', head: true }).gte('created_datetime_utc', sevenDaysAgo),
+    supabase.from('caption_votes').select('*', { count: 'exact', head: true }).gte('created_datetime_utc', fourteenDaysAgo).lt('created_datetime_utc', sevenDaysAgo),
   ])
 
   const { data: recentImages, error: recentImagesError } = await supabase
@@ -61,14 +83,38 @@ export default async function AdminPage() {
     console.error('Error fetching top captions:', topCaptionsError)
   }
 
+  const [captionsPerDayRes, usersPerDayRes, topFlavorsRes, topModelsRes] = await Promise.all([
+    supabase.rpc('admin_captions_per_day', { days_back: 14 }),
+    supabase.rpc('admin_users_per_day', { days_back: 30 }),
+    supabase.rpc('admin_top_flavors', { lim: 8 }),
+    supabase.rpc('admin_top_models', { lim: 8 }),
+  ])
+
+  if (captionsPerDayRes.error) console.error('captionsPerDay error:', captionsPerDayRes.error)
+  if (usersPerDayRes.error) console.error('usersPerDay error:', usersPerDayRes.error)
+  if (topFlavorsRes.error) console.error('topFlavors error:', topFlavorsRes.error)
+  if (topModelsRes.error) console.error('topModels error:', topModelsRes.error)
+
   const stats = {
     totalUsers: usersResult.count || 0,
     totalImages: imagesResult.count || 0,
     totalCaptions: captionsResult.count || 0,
     totalVotes: votesResult.count || 0,
+    weekly: {
+      users: { thisWeek: usersThisWeek.count || 0, lastWeek: usersLastWeek.count || 0 },
+      images: { thisWeek: imagesThisWeek.count || 0, lastWeek: imagesLastWeek.count || 0 },
+      captions: { thisWeek: captionsThisWeek.count || 0, lastWeek: captionsLastWeek.count || 0 },
+      votes: { thisWeek: votesThisWeek.count || 0, lastWeek: votesLastWeek.count || 0 },
+    },
+    charts: {
+      captionsPerDay: (captionsPerDayRes.data as Array<{ day: string; c: number }> | null) || [],
+      usersPerDay: (usersPerDayRes.data as Array<{ day: string; c: number }> | null) || [],
+      topFlavors: (topFlavorsRes.data as Array<{ id: number; slug: string; caption_count: number }> | null) || [],
+      topModels: (topModelsRes.data as Array<{ id: number; name: string; provider: string; uses: number }> | null) || [],
+    },
     recentImages: recentImages || [],
     recentCaptions: recentCaptions || [],
-    topCaptions: topCaptions || []
+    topCaptions: topCaptions || [],
   }
 
   return (
