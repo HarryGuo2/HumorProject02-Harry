@@ -21,11 +21,12 @@ interface LLMChain {
 
 interface Props {
   llmChains: LLMChain[]
+  totalChains?: number
   captionRequests: CaptionRequest[]
   currentUser: unknown
 }
 
-export default function LLMChainsManagement({ llmChains, captionRequests, currentUser }: Props) {
+export default function LLMChainsManagement({ llmChains, totalChains, captionRequests, currentUser }: Props) {
   const [localChains, setLocalChains] = useState(llmChains)
   const [searchTerm, setSearchTerm] = useState('')
   const [showCreateForm, setShowCreateForm] = useState(false)
@@ -174,7 +175,10 @@ export default function LLMChainsManagement({ llmChains, captionRequests, curren
               className="input-modern flex-1"
             />
             <div className="text-sm text-neutral-600">
-              {filteredChains.length} of {localChains.length} chains
+              {filteredChains.length} of {localChains.length.toLocaleString()} loaded
+              {typeof totalChains === 'number' && totalChains > localChains.length && (
+                <> · {totalChains.toLocaleString()} total in DB</>
+              )}
             </div>
           </div>
         </div>

@@ -22,7 +22,10 @@ export default async function ImagesPage() {
     redirect('/unauthorized')
   }
 
-  // Fetch all images with caption counts
+  const { count: totalImages } = await supabase
+    .from('images')
+    .select('*', { count: 'exact', head: true })
+
   const { data: images, error } = await supabase
     .from('images')
     .select(`
@@ -31,6 +34,7 @@ export default async function ImagesPage() {
       profiles(email)
     `)
     .order('created_datetime_utc', { ascending: false })
+    .limit(500)
 
   if (error) {
     console.error('Error fetching images:', error)
@@ -39,6 +43,7 @@ export default async function ImagesPage() {
   return (
     <ImagesManagement
       images={images || []}
+      totalCount={totalImages ?? (images?.length || 0)}
       currentUser={user}
     />
   )

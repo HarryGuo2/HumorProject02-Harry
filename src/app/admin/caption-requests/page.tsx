@@ -21,8 +21,11 @@ export default async function CaptionRequestsPage() {
     redirect('/unauthorized')
   }
 
-  // Fetch caption requests with user and image info
-  const { data: captionRequests } = await supabase
+  const { count: totalRequests } = await supabase
+    .from('caption_requests')
+    .select('*', { count: 'exact', head: true })
+
+  const { data: captionRequests, error: requestsError } = await supabase
     .from('caption_requests')
     .select(`
       *,
@@ -37,6 +40,11 @@ export default async function CaptionRequestsPage() {
       )
     `)
     .order('created_datetime_utc', { ascending: false })
+    .limit(500)
+
+  if (requestsError) {
+    console.error('Error fetching caption requests:', requestsError)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100">
@@ -62,7 +70,11 @@ export default async function CaptionRequestsPage() {
               <span className="text-xl">📝</span>
             </div>
             <h2 className="text-xl font-bold text-neutral-900">
-              Caption Requests ({captionRequests?.length || 0})
+              Caption Requests ({captionRequests?.length || 0}
+              {totalRequests && totalRequests > (captionRequests?.length || 0)
+                ? ` shown of ${totalRequests.toLocaleString()}`
+                : ''}
+              )
             </h2>
           </div>
 

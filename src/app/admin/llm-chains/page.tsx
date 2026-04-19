@@ -23,7 +23,11 @@ export default async function LLMChainsPage() {
     redirect('/unauthorized')
   }
 
-  const { data: llmChains } = await supabase
+  const { count: totalChains } = await supabase
+    .from('llm_prompt_chains')
+    .select('*', { count: 'exact', head: true })
+
+  const { data: llmChains, error: chainsError } = await supabase
     .from('llm_prompt_chains')
     .select(`
       *,
@@ -38,6 +42,11 @@ export default async function LLMChainsPage() {
       )
     `)
     .order('created_datetime_utc', { ascending: false })
+    .limit(500)
+
+  if (chainsError) {
+    console.error('Error fetching LLM chains:', chainsError)
+  }
 
   const { data: captionRequests } = await supabase
     .from('caption_requests')
@@ -56,6 +65,7 @@ export default async function LLMChainsPage() {
   return (
     <LLMChainsManagement
       llmChains={llmChains || []}
+      totalChains={totalChains ?? (llmChains?.length || 0)}
       captionRequests={captionRequests || []}
       currentUser={user}
     />

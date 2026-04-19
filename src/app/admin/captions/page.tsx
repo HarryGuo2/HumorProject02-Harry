@@ -22,7 +22,10 @@ export default async function CaptionsPage() {
     redirect('/unauthorized')
   }
 
-  // Fetch all captions with related data
+  const { count: totalCaptions } = await supabase
+    .from('captions')
+    .select('*', { count: 'exact', head: true })
+
   const { data: captions, error } = await supabase
     .from('captions')
     .select(`
@@ -33,6 +36,7 @@ export default async function CaptionsPage() {
       votes:caption_votes(vote_value)
     `)
     .order('created_datetime_utc', { ascending: false })
+    .limit(500)
 
   if (error) {
     console.error('Error fetching captions:', error)
@@ -41,6 +45,7 @@ export default async function CaptionsPage() {
   return (
     <CaptionsManagement
       captions={captions || []}
+      totalCount={totalCaptions ?? (captions?.length || 0)}
       currentUser={user}
     />
   )

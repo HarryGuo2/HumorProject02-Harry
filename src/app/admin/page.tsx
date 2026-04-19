@@ -31,25 +31,35 @@ export default async function AdminPage() {
     supabase.from('caption_votes').select('*', { count: 'exact' })
   ])
 
-  // Get recent activity
-  const { data: recentImages } = await supabase
+  const { data: recentImages, error: recentImagesError } = await supabase
     .from('images')
     .select('*')
-    .order('created_at', { ascending: false })
+    .order('created_datetime_utc', { ascending: false })
     .limit(5)
 
-  const { data: recentCaptions } = await supabase
+  if (recentImagesError) {
+    console.error('Error fetching recent images:', recentImagesError)
+  }
+
+  const { data: recentCaptions, error: recentCaptionsError } = await supabase
     .from('captions')
     .select('*, profiles(email)')
     .order('created_datetime_utc', { ascending: false })
     .limit(5)
 
-  // Get top captions by likes
-  const { data: topCaptions } = await supabase
+  if (recentCaptionsError) {
+    console.error('Error fetching recent captions:', recentCaptionsError)
+  }
+
+  const { data: topCaptions, error: topCaptionsError } = await supabase
     .from('captions')
     .select('*, profiles(email)')
     .order('like_count', { ascending: false })
     .limit(5)
+
+  if (topCaptionsError) {
+    console.error('Error fetching top captions:', topCaptionsError)
+  }
 
   const stats = {
     totalUsers: usersResult.count || 0,

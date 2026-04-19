@@ -22,10 +22,11 @@ interface Caption {
 
 interface Props {
   captions: Caption[]
+  totalCount?: number
   currentUser: any
 }
 
-export default function CaptionsManagement({ captions, currentUser }: Props) {
+export default function CaptionsManagement({ captions, totalCount, currentUser }: Props) {
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'most_liked' | 'least_liked'>('newest')
   const [filterFeatured, setFilterFeatured] = useState<'all' | 'featured' | 'regular'>('all')
@@ -173,7 +174,10 @@ export default function CaptionsManagement({ captions, currentUser }: Props) {
               <option value="regular">Regular Only</option>
             </select>
             <div className="text-sm text-neutral-600">
-              {filteredAndSortedCaptions.length} of {totalCaptions} captions
+              {filteredAndSortedCaptions.length} of {totalCaptions.toLocaleString()} loaded
+              {typeof totalCount === 'number' && totalCount > totalCaptions && (
+                <> · {totalCount.toLocaleString()} total in DB (showing latest {totalCaptions})</>
+              )}
             </div>
           </div>
         </div>

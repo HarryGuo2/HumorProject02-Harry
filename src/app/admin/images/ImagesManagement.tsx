@@ -17,10 +17,11 @@ interface Image {
 
 interface Props {
   images: Image[]
+  totalCount?: number
   currentUser: any
 }
 
-export default function ImagesManagement({ images, currentUser }: Props) {
+export default function ImagesManagement({ images, totalCount, currentUser }: Props) {
   const [searchTerm, setSearchTerm] = useState('')
   const [filterPublic, setFilterPublic] = useState<'all' | 'public' | 'private'>('all')
   const [isLoading, setIsLoading] = useState(false)
@@ -279,7 +280,10 @@ export default function ImagesManagement({ images, currentUser }: Props) {
               <option value="private">Private Only</option>
             </select>
             <div className="text-sm text-neutral-600">
-              {filteredImages.length} of {localImages.length} images
+              {filteredImages.length} of {localImages.length.toLocaleString()} loaded
+              {typeof totalCount === 'number' && totalCount > localImages.length && (
+                <> · {totalCount.toLocaleString()} total in DB</>
+              )}
             </div>
           </div>
         </div>
@@ -290,7 +294,13 @@ export default function ImagesManagement({ images, currentUser }: Props) {
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
               <span className="text-xl">🖼️</span>
             </div>
-            <h2 className="text-xl font-bold text-neutral-900">Image Library ({localImages.length})</h2>
+            <h2 className="text-xl font-bold text-neutral-900">
+              Image Library ({localImages.length.toLocaleString()}
+              {typeof totalCount === 'number' && totalCount > localImages.length
+                ? ` of ${totalCount.toLocaleString()}`
+                : ''}
+              )
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="bg-green-50 p-4 rounded-lg">

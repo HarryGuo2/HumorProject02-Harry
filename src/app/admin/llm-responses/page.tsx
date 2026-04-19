@@ -23,7 +23,11 @@ export default async function LLMResponsesPage() {
     redirect('/unauthorized')
   }
 
-  const { data: llmResponses } = await supabase
+  const { count: totalResponses } = await supabase
+    .from('llm_model_responses')
+    .select('*', { count: 'exact', head: true })
+
+  const { data: llmResponses, error: llmResponsesError } = await supabase
     .from('llm_model_responses')
     .select(`
       *,
@@ -50,6 +54,11 @@ export default async function LLMResponsesPage() {
       )
     `)
     .order('created_datetime_utc', { ascending: false })
+    .limit(500)
+
+  if (llmResponsesError) {
+    console.error('Error fetching LLM model responses:', llmResponsesError)
+  }
 
   const [
     { data: llmModels },
@@ -70,6 +79,7 @@ export default async function LLMResponsesPage() {
   return (
     <LLMResponsesManagement
       llmResponses={llmResponses || []}
+      totalResponses={totalResponses ?? (llmResponses?.length || 0)}
       llmModels={llmModels || []}
       profiles={profiles || []}
       humorFlavors={humorFlavors || []}

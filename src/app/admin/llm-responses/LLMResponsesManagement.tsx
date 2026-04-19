@@ -60,6 +60,7 @@ interface LLMResponse {
 
 interface Props {
   llmResponses: LLMResponse[]
+  totalResponses?: number
   llmModels: LLMModel[]
   profiles: Profile[]
   humorFlavors: HumorFlavor[]
@@ -99,6 +100,7 @@ const emptyForm: FormState = {
 
 export default function LLMResponsesManagement({
   llmResponses,
+  totalResponses,
   llmModels,
   profiles,
   humorFlavors,
@@ -310,7 +312,10 @@ export default function LLMResponsesManagement({
             </select>
           </div>
           <div className="text-sm text-neutral-600 mt-3">
-            {filteredResponses.length} of {localResponses.length} rows
+            {filteredResponses.length} of {localResponses.length.toLocaleString()} loaded
+            {typeof totalResponses === 'number' && totalResponses > localResponses.length && (
+              <> · {totalResponses.toLocaleString()} total in DB</>
+            )}
           </div>
         </div>
 
