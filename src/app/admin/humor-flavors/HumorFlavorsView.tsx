@@ -120,9 +120,9 @@ export default function HumorFlavorsView({ flavors }: { flavors: Flavor[] }) {
       <div className="flex items-center justify-between mb-4 text-sm text-slate-500">
         <div>
           Showing <span className="font-semibold text-slate-700">{visible.length}</span> of{' '}
-          <span className="font-semibold text-slate-700">{filtered.length.toLocaleString()}</span>
+          <span className="font-semibold text-slate-700">{filtered.length.toLocaleString('en-US')}</span>
           {filtered.length !== flavors.length && (
-            <> &middot; {flavors.length.toLocaleString()} total</>
+            <> &middot; {flavors.length.toLocaleString('en-US')} total</>
           )}
         </div>
         {totalPages > 1 && (
@@ -181,15 +181,15 @@ export default function HumorFlavorsView({ flavors }: { flavors: Flavor[] }) {
               <div className="grid grid-cols-2 gap-2 mb-3">
                 <div className="rounded-lg bg-blue-50 border border-blue-100 px-3 py-2">
                   <div className="text-[10px] uppercase text-blue-700 font-bold tracking-wider">Steps</div>
-                  <div className="text-lg font-bold text-blue-900 tabular-nums">{Number(f.step_count).toLocaleString()}</div>
+                  <div className="text-lg font-bold text-blue-900 tabular-nums">{Number(f.step_count).toLocaleString('en-US')}</div>
                 </div>
                 <div className="rounded-lg bg-emerald-50 border border-emerald-100 px-3 py-2">
                   <div className="text-[10px] uppercase text-emerald-700 font-bold tracking-wider">Captions</div>
-                  <div className="text-lg font-bold text-emerald-900 tabular-nums">{Number(f.caption_count).toLocaleString()}</div>
+                  <div className="text-lg font-bold text-emerald-900 tabular-nums">{Number(f.caption_count).toLocaleString('en-US')}</div>
                 </div>
               </div>
               <div className="text-xs text-slate-500">
-                Created {new Date(f.created_datetime_utc).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                Created {new Date(f.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' })}
               </div>
             </div>
           ))}
@@ -218,10 +218,10 @@ export default function HumorFlavorsView({ flavors }: { flavors: Flavor[] }) {
                     </span>
                   </td>
                   <td className="py-3 px-4 text-neutral-700 max-w-md truncate">{f.description || <span className="italic text-slate-400">—</span>}</td>
-                  <td className="py-3 px-4 text-right tabular-nums font-semibold text-blue-800">{Number(f.step_count).toLocaleString()}</td>
-                  <td className="py-3 px-4 text-right tabular-nums font-semibold text-emerald-800">{Number(f.caption_count).toLocaleString()}</td>
+                  <td className="py-3 px-4 text-right tabular-nums font-semibold text-blue-800">{Number(f.step_count).toLocaleString('en-US')}</td>
+                  <td className="py-3 px-4 text-right tabular-nums font-semibold text-emerald-800">{Number(f.caption_count).toLocaleString('en-US')}</td>
                   <td className="py-3 px-4">{f.is_pinned ? <span className="text-amber-600 font-semibold">📌 Yes</span> : <span className="text-slate-400">—</span>}</td>
-                  <td className="py-3 px-4 text-neutral-600">{new Date(f.created_datetime_utc).toLocaleDateString()}</td>
+                  <td className="py-3 px-4 text-neutral-600">{new Date(f.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}</td>
                 </tr>
               ))}
             </tbody>

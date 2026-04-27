@@ -365,11 +365,11 @@ export default function WhitelistEmailsManagement({ whitelistEmails, currentUser
                         <span className="font-mono text-neutral-900">{email.email_address}</span>
                       </td>
                       <td className="py-3 px-4 text-neutral-600">
-                        {new Date(email.created_datetime_utc).toLocaleDateString()}
+                        {new Date(email.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                       </td>
                       <td className="py-3 px-4 text-neutral-600">
                         {email.modified_datetime_utc
-                          ? new Date(email.modified_datetime_utc).toLocaleDateString()
+                          ? new Date(email.modified_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })
                           : '—'}
                       </td>
                       <td className="py-3 px-4 text-right">

@@ -425,9 +425,9 @@ export default function CaptionExamplesManagement({ captionExamples, images, cur
                         <p className="text-neutral-600 text-sm">{example.explanation}</p>
                       </div>
                       <div className="text-xs text-neutral-500">
-                        Created: {new Date(example.created_datetime_utc).toLocaleDateString()}
+                        Created: {new Date(example.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                         {example.modified_datetime_utc && (
-                          <> • Modified: {new Date(example.modified_datetime_utc).toLocaleDateString()}</>
+                          <> • Modified: {new Date(example.modified_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}</>
                         )}
                       </div>
                     </div>

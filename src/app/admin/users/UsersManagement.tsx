@@ -276,11 +276,11 @@ export default function UsersManagement({ profiles, currentUser }: Props) {
                       </td>
                       <td className="py-3 px-4 text-neutral-600">
                         <div className="text-sm">
-                          {new Date(profile.created_datetime_utc).toLocaleDateString()}
+                          {new Date(profile.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                         </div>
                         {profile.modified_datetime_utc && (
                           <div className="text-xs text-neutral-500">
-                            Modified: {new Date(profile.modified_datetime_utc).toLocaleDateString()}
+                            Modified: {new Date(profile.modified_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                           </div>
                         )}
                       </td>

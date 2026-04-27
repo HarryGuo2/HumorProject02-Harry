@@ -29,7 +29,7 @@ function timeAgo(iso: string): string {
   if (h < 24) return `${h}h ago`
   const d = Math.floor(h / 24)
   if (d < 7) return `${d}d ago`
-  return new Date(iso).toLocaleDateString()
+  return new Date(iso).toLocaleDateString('en-US', { timeZone: 'UTC' })
 }
 
 export default function CaptionRequestsView({
@@ -139,9 +139,9 @@ export default function CaptionRequestsView({
       <div className="flex items-center justify-between mb-4 text-sm text-slate-500">
         <div>
           Showing <span className="font-semibold text-slate-700">{visible.length}</span> of{' '}
-          <span className="font-semibold text-slate-700">{filtered.length.toLocaleString()}</span>
+          <span className="font-semibold text-slate-700">{filtered.length.toLocaleString('en-US')}</span>
           {requests.length < totalRequests && (
-            <> &middot; loaded <span className="font-semibold text-slate-700">{requests.length.toLocaleString()}</span> of {totalRequests.toLocaleString()} total</>
+            <> &middot; loaded <span className="font-semibold text-slate-700">{requests.length.toLocaleString('en-US')}</span> of {totalRequests.toLocaleString('en-US')} total</>
           )}
         </div>
         {totalPages > 1 && (
@@ -208,18 +208,18 @@ export default function CaptionRequestsView({
                 <div className="grid grid-cols-2 gap-2">
                   <div className="rounded-lg bg-emerald-50 border border-emerald-100 px-3 py-2">
                     <div className="text-[10px] uppercase text-emerald-700 font-bold tracking-wider">Captions</div>
-                    <div className="text-lg font-bold text-emerald-900 tabular-nums">{Number(r.caption_count).toLocaleString()}</div>
+                    <div className="text-lg font-bold text-emerald-900 tabular-nums">{Number(r.caption_count).toLocaleString('en-US')}</div>
                   </div>
                   <div className="rounded-lg bg-indigo-50 border border-indigo-100 px-3 py-2">
                     <div className="text-[10px] uppercase text-indigo-700 font-bold tracking-wider">Responses</div>
-                    <div className="text-lg font-bold text-indigo-900 tabular-nums">{Number(r.response_count).toLocaleString()}</div>
+                    <div className="text-lg font-bold text-indigo-900 tabular-nums">{Number(r.response_count).toLocaleString('en-US')}</div>
                   </div>
                 </div>
                 <div className="flex items-center justify-between text-xs text-slate-500 mt-auto">
                   <span className="truncate" title={r.profile_email || 'Unknown'}>
                     👤 {r.profile_email || 'Unknown'}
                   </span>
-                  <span className="shrink-0" title={new Date(r.created_datetime_utc).toLocaleString()}>
+                  <span className="shrink-0" title={new Date(r.created_datetime_utc).toLocaleString('en-US')}>
                     {timeAgo(r.created_datetime_utc)}
                   </span>
                 </div>
@@ -268,9 +268,9 @@ export default function CaptionRequestsView({
                       <span className="text-slate-400">—</span>
                     )}
                   </td>
-                  <td className="py-3 px-3 text-right tabular-nums font-semibold text-emerald-800">{Number(r.caption_count).toLocaleString()}</td>
-                  <td className="py-3 px-3 text-right tabular-nums font-semibold text-indigo-800">{Number(r.response_count).toLocaleString()}</td>
-                  <td className="py-3 px-3 text-sm text-neutral-600" title={new Date(r.created_datetime_utc).toLocaleString()}>
+                  <td className="py-3 px-3 text-right tabular-nums font-semibold text-emerald-800">{Number(r.caption_count).toLocaleString('en-US')}</td>
+                  <td className="py-3 px-3 text-right tabular-nums font-semibold text-indigo-800">{Number(r.response_count).toLocaleString('en-US')}</td>
+                  <td className="py-3 px-3 text-sm text-neutral-600" title={new Date(r.created_datetime_utc).toLocaleString('en-US')}>
                     {timeAgo(r.created_datetime_utc)}
                   </td>
                 </tr>

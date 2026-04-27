@@ -31,7 +31,7 @@ export default function MiniBarChart({
 }: Props) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null)
 
-  const fmtValue = (v: number) => (valueFormatter ? valueFormatter(v) : v.toLocaleString())
+  const fmtValue = (v: number) => (valueFormatter ? valueFormatter(v) : v.toLocaleString('en-US'))
   const fmtLabel = (l: string) => (labelFormatter ? labelFormatter(l) : l)
 
   const stats = useMemo(() => {

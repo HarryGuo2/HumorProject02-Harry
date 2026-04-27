@@ -273,7 +273,7 @@ export default function SignupDomainsManagement({ signupDomains, currentUser }: 
                         </div>
                       </td>
                       <td className="py-3 px-4 text-neutral-600">
-                        {new Date(domain.created_datetime_utc).toLocaleDateString()}
+                        {new Date(domain.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                       </td>
                       <td className="py-3 px-4 text-right">
                         <div className="flex items-center justify-end gap-2">

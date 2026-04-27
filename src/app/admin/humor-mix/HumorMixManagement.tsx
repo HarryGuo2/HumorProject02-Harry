@@ -314,7 +314,7 @@ export default function HumorMixManagement({ humorMix, humorFlavors, currentUser
                       <td className="py-3 px-4">{row.humor_flavors?.slug || `#${row.humor_flavor_id}`}</td>
                       <td className="py-3 px-4">{row.caption_count}</td>
                       <td className="py-3 px-4 text-neutral-600">
-                        {new Date(row.created_datetime_utc).toLocaleString()}
+                        {new Date(row.created_datetime_utc).toLocaleString('en-US')}
                       </td>
                       <td className="py-3 px-4 text-right">
                         <div className="flex items-center justify-end gap-2">

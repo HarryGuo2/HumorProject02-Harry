@@ -295,9 +295,9 @@ export default function ImagesManagement({ images, totalCount, currentUser }: Pr
               <option value="private">Private Only</option>
             </select>
             <div className="text-sm text-neutral-600">
-              {filteredImages.length} of {localImages.length.toLocaleString()} loaded
+              {filteredImages.length} of {localImages.length.toLocaleString('en-US')} loaded
               {typeof totalCount === 'number' && totalCount > localImages.length && (
-                <> · {totalCount.toLocaleString()} total in DB</>
+                <> · {totalCount.toLocaleString('en-US')} total in DB</>
               )}
             </div>
           </div>
@@ -310,9 +310,9 @@ export default function ImagesManagement({ images, totalCount, currentUser }: Pr
               <span className="text-xl">🖼️</span>
             </div>
             <h2 className="text-xl font-bold text-neutral-900">
-              Image Library ({localImages.length.toLocaleString()}
+              Image Library ({localImages.length.toLocaleString('en-US')}
               {typeof totalCount === 'number' && totalCount > localImages.length
-                ? ` of ${totalCount.toLocaleString()}`
+                ? ` of ${totalCount.toLocaleString('en-US')}`
                 : ''}
               )
             </h2>
@@ -399,7 +399,7 @@ export default function ImagesManagement({ images, totalCount, currentUser }: Pr
 
                   <div className="text-xs text-neutral-500 mb-3 space-y-1">
                     <div>ID: {image.id.substring(0, 8)}...</div>
-                    <div>Created: {new Date(image.created_datetime_utc).toLocaleDateString()}</div>
+                    <div>Created: {new Date(image.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}</div>
                     <div>By: {image.profiles?.email || 'Unknown'}</div>
                   </div>
 
@@ -634,7 +634,7 @@ export default function ImagesManagement({ images, totalCount, currentUser }: Pr
 
                 <div className="text-xs text-neutral-500 bg-neutral-50 p-3 rounded-lg">
                   <div><strong>Image ID:</strong> {selectedImage.id}</div>
-                  <div><strong>Created:</strong> {new Date(selectedImage.created_datetime_utc).toLocaleString()}</div>
+                  <div><strong>Created:</strong> {new Date(selectedImage.created_datetime_utc).toLocaleString('en-US')}</div>
                   <div><strong>By:</strong> {selectedImage.profiles?.email || 'Unknown'}</div>
                   <div><strong>URL:</strong> <a href={selectedImage.url} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700">View original</a></div>
                 </div>

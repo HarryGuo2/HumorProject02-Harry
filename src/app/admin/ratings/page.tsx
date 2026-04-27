@@ -100,23 +100,23 @@ export default async function RatingsPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Votes</p>
-            <p className="text-3xl font-bold text-orange-600 tabular-nums mt-1">{Number(summary.total_votes).toLocaleString()}</p>
+            <p className="text-3xl font-bold text-orange-600 tabular-nums mt-1">{Number(summary.total_votes).toLocaleString('en-US')}</p>
             <p className="text-[11px] text-slate-500 mt-1">across all captions</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Unique Raters</p>
-            <p className="text-3xl font-bold text-blue-700 tabular-nums mt-1">{Number(summary.unique_voters).toLocaleString()}</p>
-            <p className="text-[11px] text-slate-500 mt-1">avg {Number(summary.avg_votes_per_voter).toLocaleString()} votes / rater</p>
+            <p className="text-3xl font-bold text-blue-700 tabular-nums mt-1">{Number(summary.unique_voters).toLocaleString('en-US')}</p>
+            <p className="text-[11px] text-slate-500 mt-1">avg {Number(summary.avg_votes_per_voter).toLocaleString('en-US')} votes / rater</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Captions Rated</p>
-            <p className="text-3xl font-bold text-purple-700 tabular-nums mt-1">{Number(summary.unique_captions_rated).toLocaleString()}</p>
-            <p className="text-[11px] text-slate-500 mt-1">avg {Number(summary.avg_votes_per_caption).toLocaleString()} votes / caption</p>
+            <p className="text-3xl font-bold text-purple-700 tabular-nums mt-1">{Number(summary.unique_captions_rated).toLocaleString('en-US')}</p>
+            <p className="text-[11px] text-slate-500 mt-1">avg {Number(summary.avg_votes_per_caption).toLocaleString('en-US')} votes / caption</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Coverage</p>
             <p className="text-3xl font-bold text-emerald-700 tabular-nums mt-1">{coveragePct}%</p>
-            <p className="text-[11px] text-slate-500 mt-1">of {Number(summary.total_captions).toLocaleString()} captions rated</p>
+            <p className="text-[11px] text-slate-500 mt-1">of {Number(summary.total_captions).toLocaleString('en-US')} captions rated</p>
           </div>
         </div>
 
@@ -140,29 +140,29 @@ export default async function RatingsPage() {
               <div
                 className="h-full bg-gradient-to-r from-emerald-500 to-green-600 transition-all duration-500"
                 style={{ width: `${(Number(summary.upvotes) / Number(summary.total_votes)) * 100}%` }}
-                title={`${Number(summary.upvotes).toLocaleString()} upvotes`}
+                title={`${Number(summary.upvotes).toLocaleString('en-US')} upvotes`}
               />
               {Number(summary.neutral_votes) > 0 && (
                 <div
                   className="h-full bg-slate-400 transition-all duration-500"
                   style={{ width: `${(Number(summary.neutral_votes) / Number(summary.total_votes)) * 100}%` }}
-                  title={`${Number(summary.neutral_votes).toLocaleString()} neutral`}
+                  title={`${Number(summary.neutral_votes).toLocaleString('en-US')} neutral`}
                 />
               )}
               <div
                 className="h-full bg-gradient-to-r from-rose-500 to-red-600 transition-all duration-500"
                 style={{ width: `${(Number(summary.downvotes) / Number(summary.total_votes)) * 100}%` }}
-                title={`${Number(summary.downvotes).toLocaleString()} downvotes`}
+                title={`${Number(summary.downvotes).toLocaleString('en-US')} downvotes`}
               />
             </div>
           )}
           <div className="flex items-center gap-6 text-sm mt-3 text-slate-600">
-            <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-emerald-500"></span>👍 Upvotes: <span className="font-semibold text-emerald-700 tabular-nums">{Number(summary.upvotes).toLocaleString()}</span></span>
+            <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-emerald-500"></span>👍 Upvotes: <span className="font-semibold text-emerald-700 tabular-nums">{Number(summary.upvotes).toLocaleString('en-US')}</span></span>
             {Number(summary.neutral_votes) > 0 && (
-              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-slate-400"></span>Neutral: <span className="font-semibold tabular-nums">{Number(summary.neutral_votes).toLocaleString()}</span></span>
+              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-slate-400"></span>Neutral: <span className="font-semibold tabular-nums">{Number(summary.neutral_votes).toLocaleString('en-US')}</span></span>
             )}
-            <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-rose-500"></span>👎 Downvotes: <span className="font-semibold text-rose-700 tabular-nums">{Number(summary.downvotes).toLocaleString()}</span></span>
-            <span className="ml-auto text-slate-500 text-xs">📊 Study: {Number(summary.study_votes).toLocaleString()} · App: {Number(summary.non_study_votes).toLocaleString()}</span>
+            <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-rose-500"></span>👎 Downvotes: <span className="font-semibold text-rose-700 tabular-nums">{Number(summary.downvotes).toLocaleString('en-US')}</span></span>
+            <span className="ml-auto text-slate-500 text-xs">📊 Study: {Number(summary.study_votes).toLocaleString('en-US')} · App: {Number(summary.non_study_votes).toLocaleString('en-US')}</span>
           </div>
         </div>
 
@@ -179,7 +179,7 @@ export default async function RatingsPage() {
               </div>
               <div className="ml-auto text-right">
                 <div className="text-xs uppercase text-slate-500">30d total</div>
-                <div className="text-lg font-bold text-blue-700 tabular-nums">{perDay.reduce((a, b) => a + Number(b.total || 0), 0).toLocaleString()}</div>
+                <div className="text-lg font-bold text-blue-700 tabular-nums">{perDay.reduce((a, b) => a + Number(b.total || 0), 0).toLocaleString('en-US')}</div>
               </div>
             </div>
             <MiniBarChart
@@ -250,7 +250,7 @@ export default async function RatingsPage() {
                     </div>
                     <div className="col-span-2 text-right text-xs text-slate-600 tabular-nums">
                       <span className="font-bold text-slate-800">{pct}%</span>
-                      <span className="ml-1 text-slate-400">· {Number(f.vote_count).toLocaleString()} votes</span>
+                      <span className="ml-1 text-slate-400">· {Number(f.vote_count).toLocaleString('en-US')} votes</span>
                     </div>
                   </div>
                 )
@@ -361,10 +361,10 @@ export default async function RatingsPage() {
                       <tr key={v.profile_id} className="border-b border-slate-100 hover:bg-slate-50">
                         <td className="py-2 px-3 tabular-nums text-slate-500">{i + 1}</td>
                         <td className="py-2 px-3 truncate max-w-[260px]" title={v.email || undefined}>{v.email || <span className="text-slate-400">—</span>}</td>
-                        <td className="py-2 px-3 text-right tabular-nums font-semibold text-slate-800">{Number(v.vote_count).toLocaleString()}</td>
-                        <td className="py-2 px-3 text-right tabular-nums text-emerald-700">{Number(v.upvotes).toLocaleString()}</td>
-                        <td className="py-2 px-3 text-right tabular-nums text-rose-700">{Number(v.downvotes).toLocaleString()}</td>
-                        <td className="py-2 px-3 text-right tabular-nums">{Number(v.captions_rated).toLocaleString()}</td>
+                        <td className="py-2 px-3 text-right tabular-nums font-semibold text-slate-800">{Number(v.vote_count).toLocaleString('en-US')}</td>
+                        <td className="py-2 px-3 text-right tabular-nums text-emerald-700">{Number(v.upvotes).toLocaleString('en-US')}</td>
+                        <td className="py-2 px-3 text-right tabular-nums text-rose-700">{Number(v.downvotes).toLocaleString('en-US')}</td>
+                        <td className="py-2 px-3 text-right tabular-nums">{Number(v.captions_rated).toLocaleString('en-US')}</td>
                         <td className="py-2 px-3">
                           <div className="flex items-center gap-2">
                             <div className="h-1.5 w-24 rounded-full bg-slate-100 overflow-hidden">

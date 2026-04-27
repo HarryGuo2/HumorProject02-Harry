@@ -175,9 +175,9 @@ export default function LLMChainsManagement({ llmChains, totalChains, captionReq
               className="input-modern flex-1"
             />
             <div className="text-sm text-neutral-600">
-              {filteredChains.length} of {localChains.length.toLocaleString()} loaded
+              {filteredChains.length} of {localChains.length.toLocaleString('en-US')} loaded
               {typeof totalChains === 'number' && totalChains > localChains.length && (
-                <> · {totalChains.toLocaleString()} total in DB</>
+                <> · {totalChains.toLocaleString('en-US')} total in DB</>
               )}
             </div>
           </div>
@@ -293,7 +293,7 @@ export default function LLMChainsManagement({ llmChains, totalChains, captionReq
                           '-'}
                       </td>
                       <td className="py-3 px-4 text-neutral-600">
-                        {new Date(chain.created_datetime_utc).toLocaleString()}
+                        {new Date(chain.created_datetime_utc).toLocaleString('en-US')}
                       </td>
                       <td className="py-3 px-4 text-right">
                         <div className="flex items-center justify-end gap-2">

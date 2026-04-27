@@ -174,9 +174,9 @@ export default function CaptionsManagement({ captions, totalCount, currentUser }
               <option value="regular">Regular Only</option>
             </select>
             <div className="text-sm text-neutral-600">
-              {filteredAndSortedCaptions.length} of {totalCaptions.toLocaleString()} loaded
+              {filteredAndSortedCaptions.length} of {totalCaptions.toLocaleString('en-US')} loaded
               {typeof totalCount === 'number' && totalCount > totalCaptions && (
-                <> · {totalCount.toLocaleString()} total in DB (showing latest {totalCaptions})</>
+                <> · {totalCount.toLocaleString('en-US')} total in DB (showing latest {totalCaptions})</>
               )}
             </div>
           </div>
@@ -255,7 +255,7 @@ export default function CaptionsManagement({ captions, totalCount, currentUser }
                               </span>
                               <span className="flex items-center gap-1">
                                 <span>📅</span>
-                                {new Date(caption.created_datetime_utc).toLocaleDateString()}
+                                {new Date(caption.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                               </span>
                             </div>
 
@@ -354,7 +354,7 @@ export default function CaptionsManagement({ captions, totalCount, currentUser }
                   <div className="bg-green-50 p-4 rounded-lg">
                     <div className="text-green-600 text-sm font-medium">Created</div>
                     <div className="text-green-900 font-medium">
-                      {new Date(selectedCaption.created_datetime_utc).toLocaleDateString()}
+                      {new Date(selectedCaption.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                     </div>
                   </div>
                 </div>

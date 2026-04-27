@@ -104,8 +104,8 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
       {/* Navigation Header */}
       <nav className="relative z-20 glass-card border-0 rounded-none backdrop-blur-xl border-b shadow-soft animate-fade-in-down overflow-visible">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20">
-            <div className="flex items-center gap-4 lg:gap-6 min-w-0">
+          <div className="flex min-h-20 flex-col gap-4 py-4 xl:flex-row xl:items-center xl:justify-between">
+            <div className="flex min-w-0 flex-col gap-4 lg:flex-row lg:items-center lg:gap-6">
               <div className="flex items-center gap-4 animate-fade-in-right">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-600 rounded-2xl flex items-center justify-center shadow-glow-primary transform hover:rotate-12 transition-all duration-500 hover:scale-110">
                   <span className="text-2xl animate-float">🎭</span>
@@ -118,7 +118,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                 </div>
               </div>
 
-              <nav className="ml-1 lg:ml-4 xl:ml-8 flex space-x-1 lg:space-x-2">
+              <nav className="ml-0 flex w-full gap-1 overflow-x-auto pb-2 lg:ml-4 lg:gap-2 xl:ml-8 xl:w-auto xl:overflow-visible xl:pb-0">
                 <Link href="/admin" className="nav-link nav-link-active font-semibold animate-fade-in-up" style={{animationDelay: '0.1s'}}>
                   🏠 Dashboard
                 </Link>
@@ -245,7 +245,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
               </nav>
             </div>
 
-            <div className="flex items-center space-x-8 animate-fade-in-left">
+            <div className="flex flex-wrap items-center gap-3 animate-fade-in-left sm:flex-nowrap sm:gap-4 xl:gap-8">
               <div className="flex items-center space-x-4 px-4 py-2 glass-card rounded-2xl hover:shadow-soft transition-all duration-300">
                 {userAvatar && (
                   <div className="relative">
@@ -269,7 +269,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
               <button
                 onClick={handleLogout}
                 disabled={isLoggingOut}
-                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-2xl font-medium shadow-soft hover:shadow-red-200 transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 flex items-center gap-2"
+                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-2xl font-medium shadow-soft hover:shadow-red-200 transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 flex items-center gap-2"
               >
                 {isLoggingOut ? (
                   <div className="flex items-center gap-2">
@@ -292,23 +292,23 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
         </div>
       </nav>
 
-      <div className="relative z-10 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 lg:py-12">
         {/* Welcome Section */}
         <div className="mb-12 animate-fade-in">
-          <div className="glass-card rounded-3xl p-10 bg-gradient-to-br from-blue-50/80 to-indigo-50/60 border border-blue-200/30 relative overflow-hidden hover:shadow-xl transition-all duration-500 glow-on-hover">
+          <div className="glass-card rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-blue-50/80 to-indigo-50/60 border border-blue-200/30 relative overflow-hidden hover:shadow-xl transition-all duration-500 glow-on-hover">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 animate-gradient-shift"></div>
-            <div className="flex items-start gap-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-glow-primary animate-pulse-soft">
+            <div className="flex flex-col items-start gap-6 sm:flex-row">
+              <div className="w-16 h-16 shrink-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-glow-primary animate-pulse-soft">
                 <span className="text-3xl">🎆</span>
               </div>
-              <div>
-                <h2 className="text-5xl font-bold text-gradient mb-4">
+              <div className="min-w-0">
+                <h2 className="text-3xl sm:text-5xl font-bold text-gradient mb-4">
                   Welcome to the Control Center
                 </h2>
-                <p className="text-slate-600 text-xl leading-relaxed mb-4">
+                <p className="text-slate-600 text-base sm:text-xl leading-relaxed mb-4">
                   Advanced administrative interface for the Humor Project ecosystem. You have <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-lg font-bold">superadmin privileges</span> for complete system management.
                 </p>
-                <div className="flex items-center gap-4 text-sm">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm">
                   <div className="flex items-center gap-2 px-3 py-1 bg-green-100/80 text-green-700 rounded-lg">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                     <span className="font-medium">System Online</span>
@@ -333,11 +333,11 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Users</p>
-                <p className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">{stats.totalUsers.toLocaleString()}</p>
+                <p className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">{stats.totalUsers.toLocaleString('en-US')}</p>
                 {stats.weekly && (
                   <div className="mt-2 flex flex-col gap-1">
                     <DeltaBadge current={stats.weekly.users.thisWeek} previous={stats.weekly.users.lastWeek} />
-                    <span className="text-[11px] text-slate-500">+{stats.weekly.users.thisWeek.toLocaleString()} this week</span>
+                    <span className="text-[11px] text-slate-500">+{stats.weekly.users.thisWeek.toLocaleString('en-US')} this week</span>
                   </div>
                 )}
               </div>
@@ -352,11 +352,11 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Images</p>
-                <p className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">{stats.totalImages.toLocaleString()}</p>
+                <p className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">{stats.totalImages.toLocaleString('en-US')}</p>
                 {stats.weekly && (
                   <div className="mt-2 flex flex-col gap-1">
                     <DeltaBadge current={stats.weekly.images.thisWeek} previous={stats.weekly.images.lastWeek} />
-                    <span className="text-[11px] text-slate-500">+{stats.weekly.images.thisWeek.toLocaleString()} this week</span>
+                    <span className="text-[11px] text-slate-500">+{stats.weekly.images.thisWeek.toLocaleString('en-US')} this week</span>
                   </div>
                 )}
               </div>
@@ -371,11 +371,11 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Captions</p>
-                <p className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">{stats.totalCaptions.toLocaleString()}</p>
+                <p className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">{stats.totalCaptions.toLocaleString('en-US')}</p>
                 {stats.weekly && (
                   <div className="mt-2 flex flex-col gap-1">
                     <DeltaBadge current={stats.weekly.captions.thisWeek} previous={stats.weekly.captions.lastWeek} />
-                    <span className="text-[11px] text-slate-500">+{stats.weekly.captions.thisWeek.toLocaleString()} this week</span>
+                    <span className="text-[11px] text-slate-500">+{stats.weekly.captions.thisWeek.toLocaleString('en-US')} this week</span>
                   </div>
                 )}
               </div>
@@ -395,11 +395,11 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Votes</p>
-                <p className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{stats.totalVotes.toLocaleString()}</p>
+                <p className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{stats.totalVotes.toLocaleString('en-US')}</p>
                 {stats.weekly && (
                   <div className="mt-2 flex flex-col gap-1">
                     <DeltaBadge current={stats.weekly.votes.thisWeek} previous={stats.weekly.votes.lastWeek} />
-                    <span className="text-[11px] text-slate-500">+{stats.weekly.votes.thisWeek.toLocaleString()} this week</span>
+                    <span className="text-[11px] text-slate-500">+{stats.weekly.votes.thisWeek.toLocaleString('en-US')} this week</span>
                   </div>
                 )}
               </div>
@@ -426,7 +426,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                 <div className="ml-auto text-right">
                   <div className="text-xs text-slate-500 uppercase">Total</div>
                   <div className="text-lg font-bold text-purple-700 tabular-nums">
-                    {stats.charts.captionsPerDay.reduce((a, b) => a + Number(b.c || 0), 0).toLocaleString()}
+                    {stats.charts.captionsPerDay.reduce((a, b) => a + Number(b.c || 0), 0).toLocaleString('en-US')}
                   </div>
                 </div>
               </div>
@@ -455,7 +455,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                 <div className="ml-auto text-right">
                   <div className="text-xs text-slate-500 uppercase">Total</div>
                   <div className="text-lg font-bold text-blue-700 tabular-nums">
-                    {stats.charts.usersPerDay.reduce((a, b) => a + Number(b.c || 0), 0).toLocaleString()}
+                    {stats.charts.usersPerDay.reduce((a, b) => a + Number(b.c || 0), 0).toLocaleString('en-US')}
                   </div>
                 </div>
               </div>
@@ -543,7 +543,7 @@ export default function AdminDashboard({ user, profile, stats }: Props) {
                         {caption.like_count || 0} likes
                       </span>
                       <span className="text-neutral-500">
-                        {new Date(caption.created_datetime_utc).toLocaleDateString()}
+                        {new Date(caption.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                       </span>
                     </div>
                   </div>

@@ -75,19 +75,19 @@ export default async function CaptionRequestsPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Requests</p>
-            <p className="text-3xl font-bold text-orange-600 tabular-nums mt-1">{totalRequests.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-orange-600 tabular-nums mt-1">{totalRequests.toLocaleString('en-US')}</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Today</p>
-            <p className="text-3xl font-bold text-blue-700 tabular-nums mt-1">{todayRequests.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-blue-700 tabular-nums mt-1">{todayRequests.toLocaleString('en-US')}</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Last 7 days</p>
-            <p className="text-3xl font-bold text-purple-700 tabular-nums mt-1">{weekRequests.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-purple-700 tabular-nums mt-1">{weekRequests.toLocaleString('en-US')}</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Captions (7d)</p>
-            <p className="text-3xl font-bold text-emerald-700 tabular-nums mt-1">{weekCaptions.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-emerald-700 tabular-nums mt-1">{weekCaptions.toLocaleString('en-US')}</p>
           </div>
         </div>
 

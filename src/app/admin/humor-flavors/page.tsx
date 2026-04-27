@@ -61,19 +61,19 @@ export default async function HumorFlavorsPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Flavors</p>
-            <p className="text-3xl font-bold text-purple-700 tabular-nums mt-1">{flavors.length.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-purple-700 tabular-nums mt-1">{flavors.length.toLocaleString('en-US')}</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Pinned</p>
-            <p className="text-3xl font-bold text-amber-600 tabular-nums mt-1">{pinnedCount.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-amber-600 tabular-nums mt-1">{pinnedCount.toLocaleString('en-US')}</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Steps</p>
-            <p className="text-3xl font-bold text-blue-700 tabular-nums mt-1">{totalSteps.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-blue-700 tabular-nums mt-1">{totalSteps.toLocaleString('en-US')}</p>
           </div>
           <div className="card-modern p-5">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Captions Produced</p>
-            <p className="text-3xl font-bold text-emerald-700 tabular-nums mt-1">{totalCaptions.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-emerald-700 tabular-nums mt-1">{totalCaptions.toLocaleString('en-US')}</p>
           </div>
         </div>
 

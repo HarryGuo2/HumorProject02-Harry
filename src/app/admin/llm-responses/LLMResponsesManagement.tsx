@@ -312,9 +312,9 @@ export default function LLMResponsesManagement({
             </select>
           </div>
           <div className="text-sm text-neutral-600 mt-3">
-            {filteredResponses.length} of {localResponses.length.toLocaleString()} loaded
+            {filteredResponses.length} of {localResponses.length.toLocaleString('en-US')} loaded
             {typeof totalResponses === 'number' && totalResponses > localResponses.length && (
-              <> · {totalResponses.toLocaleString()} total in DB</>
+              <> · {totalResponses.toLocaleString('en-US')} total in DB</>
             )}
           </div>
         </div>
@@ -652,7 +652,7 @@ export default function LLMResponsesManagement({
                   </div>
                   <div className="text-sm text-neutral-700 mb-3">
                     User: {response.profiles?.email || response.profile_id} • Request: {response.caption_request_id} •
-                    Created: {new Date(response.created_datetime_utc).toLocaleString()}
+                    Created: {new Date(response.created_datetime_utc).toLocaleString('en-US')}
                   </div>
                   <p className="text-sm text-neutral-700 whitespace-pre-wrap line-clamp-3 mb-3">
                     {response.llm_model_response || 'No response content'}

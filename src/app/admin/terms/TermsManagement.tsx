@@ -396,9 +396,9 @@ export default function TermsManagement({ terms, termTypes, currentUser }: Props
                         </div>
                       )}
                       <div className="flex items-center gap-4 mt-3 text-xs text-neutral-500">
-                        <span>Created: {new Date(term.created_datetime_utc).toLocaleDateString()}</span>
+                        <span>Created: {new Date(term.created_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}</span>
                         {term.modified_datetime_utc && (
-                          <span>Modified: {new Date(term.modified_datetime_utc).toLocaleDateString()}</span>
+                          <span>Modified: {new Date(term.modified_datetime_utc).toLocaleDateString('en-US', { timeZone: 'UTC' })}</span>
                         )}
                       </div>
                     </div>
